@@ -1,10 +1,12 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { useReducer } from 'react';
 
-const CartContext = createContext();
+// CartContext yaratamiz
+const CartContext = React.createContext();
 
+// Cart reducer funksiyasi
 const cartReducer = (state, action) => {
   switch (action.type) {
-    case 'ADD_TO_CART':
+    case 'ADD_TO_CART': {
       const existingItem = state.items.find(item => item.id === action.payload.id);
       if (existingItem) {
         return {
@@ -20,6 +22,7 @@ const cartReducer = (state, action) => {
         ...state,
         items: [...state.items, { ...action.payload, quantity: 1 }]
       };
+    }
     
     case 'REMOVE_FROM_CART':
       return {
@@ -48,22 +51,26 @@ const cartReducer = (state, action) => {
   }
 };
 
+// Boshlang'ich holat
 const initialState = {
-  items: [],
-  total: 0
+  items: []
 };
 
+// CartProvider komponenti
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
+  // Savatga mahsulot qo'shish
   const addToCart = (product) => {
     dispatch({ type: 'ADD_TO_CART', payload: product });
   };
 
+  // Savatdan mahsulot o'chirish
   const removeFromCart = (productId) => {
     dispatch({ type: 'REMOVE_FROM_CART', payload: productId });
   };
 
+  // Mahsulot miqdorini o'zgartirish
   const updateQuantity = (productId, quantity) => {
     if (quantity <= 0) {
       removeFromCart(productId);
@@ -72,18 +79,22 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  // Savatni tozalash
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
   };
 
+  // Jami narxni hisoblash
   const getCartTotal = () => {
     return state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
+  // Savatdagi mahsulotlar soni
   const getCartItemsCount = () => {
     return state.items.reduce((total, item) => total + item.quantity, 0);
   };
 
+  // Context qiymati
   const value = {
     cart: state,
     addToCart,
@@ -101,10 +112,5 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
-  return context;
-};
+// Context ni export qilamiz (useCart hook uchun)
+export { CartContext };

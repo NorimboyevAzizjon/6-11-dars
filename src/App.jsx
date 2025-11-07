@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartProvider } from './context/CartContext'; // .jsx qo'shish shart emas
+import { CartProvider } from './context/CartContext'; // named import
 import Header from './components/Header/Header';
 import PromoBanner from './components/Banner/PromoBanner';
 import ProductList from './components/Product/ProductList';

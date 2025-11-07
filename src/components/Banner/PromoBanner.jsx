@@ -25,6 +25,7 @@ const PromoBanner = () => {
         <div className={styles.bannerImage}>
           <div className={styles.productImagePlaceholder}>
             <span>350 gr</span>
+            <div className={styles.giftBadge}>50 gr BEPUL</div>
           </div>
         </div>
       </div>
