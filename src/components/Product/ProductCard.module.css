@@ -46,33 +46,44 @@
   font-weight: bold;
 }
 
-/* RATING BADGE O'CHIRILDI */
-
+/* YURAKCHA TUGMASI */
 .favoriteBtn {
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
+  background: white;
+  border: 2px solid var(--uzum-border);
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  transition: all 0.2s;
+  font-size: 18px;
+  transition: all 0.3s ease;
   z-index: 2;
 }
 
 .favoriteBtn:hover {
-  background: white;
+  background: #fff5f5;
+  border-color: var(--uzum-red);
   transform: scale(1.1);
 }
 
-.favoriteBtn.active {
+/* OQ YURAKCHA (bosilmagan) */
+.favoriteBtn:not(.favoriteActive) {
+  color: #666;
+  background: white;
+  border-color: var(--uzum-border);
+}
+
+/* QIZIL YURAKCHA (bosilgan) */
+.favoriteActive {
   color: var(--uzum-red);
+  background: #fff5f5;
+  border-color: var(--uzum-red);
+  transform: scale(1.1);
 }
 
 .productInfo {
@@ -120,8 +131,6 @@
   margin-bottom: 12px;
   font-weight: 500;
 }
-
-/* PRODUCT RATING O'CHIRILDI */
 
 /* +/- BUTTONLAR */
 .quantityControls {
@@ -213,6 +222,12 @@
   }
   
   .quantityBtn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  
+  .favoriteBtn {
     width: 32px;
     height: 32px;
     font-size: 16px;

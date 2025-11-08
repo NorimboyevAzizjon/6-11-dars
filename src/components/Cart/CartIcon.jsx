@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCart } from '../../hooks/useCart'; // TO'G'RI YO'L - hooks/useCart
+import { useCart } from '../../hooks/useCart';
 import styles from './CartSidebar.module.css';
 
 const CartIcon = () => {
@@ -8,7 +8,7 @@ const CartIcon = () => {
 
   return (
     <div className={styles.cartIcon}>
-      <span>🛒</span>
+      <i className="fas fa-shopping-cart"></i>
       {itemCount > 0 && (
         <span className={styles.cartBadge}>{itemCount}</span>
       )}

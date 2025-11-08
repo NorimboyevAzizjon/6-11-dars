@@ -21,7 +21,7 @@ function App() {
     setFavorites(newFavorites);
   };
 
-  // Mahsulotlarni olish (ProductList dan)
+  // Mahsulotlarni olish
   const handleProductsLoaded = (products) => {
     setAllProducts(products);
   };

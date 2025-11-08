@@ -31,7 +31,9 @@ const CartSidebar = ({ isOpen, onClose }) => {
       <div className={styles.cartSidebar}>
         <div className={styles.cartHeader}>
           <h2>Savat ({cart.items.reduce((total, item) => total + item.quantity, 0)})</h2>
-          <button className={styles.closeBtn} onClick={onClose}>✕</button>
+          <button className={styles.closeBtn} onClick={onClose}>
+            <i className="fas fa-times"></i>
+          </button>
         </div>
 
         <div className={styles.cartItems}>
@@ -64,24 +66,24 @@ const CartSidebar = ({ isOpen, onClose }) => {
                       className={styles.quantityBtn}
                       disabled={item.quantity <= 1}
                     >
-                      -
+                      <i className="fas fa-minus"></i>
                     </button>
                     <span className={styles.quantity}>{item.quantity}</span>
                     <button 
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       className={styles.quantityBtn}
                     >
-                      +
+                      <i className="fas fa-plus"></i>
                     </button>
                   </div>
                 </div>
 
                 <button 
                   onClick={() => toggleFavorite(item.id)}
-                  className={`${styles.favoriteBtn} ${favorites.has(item.id) ? styles.active : ''}`}
+                  className={`${styles.favoriteBtn} ${favorites.has(item.id) ? styles.favoriteActive : ''}`}
                   title="Sevimlilarga qo'shish"
                 >
-                  {favorites.has(item.id) ? '❤️' : '🤍'}
+                  <i className={`fas ${favorites.has(item.id) ? 'fa-heart' : 'fa-heart'}`}></i>
                 </button>
 
                 <button 
@@ -89,7 +91,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   className={styles.removeBtn}
                   title="O'chirish"
                 >
-                  🗑️
+                  <i className="fas fa-trash"></i>
                 </button>
               </div>
             ))
@@ -107,6 +109,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                 Tozalash
               </button>
               <button className={styles.checkoutBtn}>
+                <i className="fas fa-credit-card"></i>
                 Buyurtma berish
               </button>
             </div>

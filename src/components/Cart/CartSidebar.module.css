@@ -308,3 +308,45 @@
     padding: 16px 20px;
   }
 }
+/* ... existing code ... */
+
+/* YURAKCHA TUGMASI */
+.favoriteBtn {
+  position: absolute;
+  top: 12px;
+  right: 50px;
+  background: white;
+  border: 2px solid var(--uzum-border);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.favoriteBtn:hover {
+  background: #fff5f5;
+  border-color: var(--uzum-red);
+  transform: scale(1.1);
+}
+
+/* OQ YURAKCHA (bosilmagan) */
+.favoriteBtn:not(.favoriteActive) {
+  color: #666;
+  background: white;
+  border-color: var(--uzum-border);
+}
+
+/* QIZIL YURAKCHA (bosilgan) */
+.favoriteActive {
+  color: var(--uzum-red);
+  background: #fff5f5;
+  border-color: var(--uzum-red);
+  transform: scale(1.1);
+}
+
+/* ... rest of existing code ... */

@@ -44,9 +44,9 @@ const ProductCard = ({ product, onToggleFavorite, isFavorite }) => {
         
         <button 
           onClick={handleFavoriteClick}
-          className={`${styles.favoriteBtn} ${isFavorite ? styles.active : ''}`}
+          className={`${styles.favoriteBtn} ${isFavorite ? styles.favoriteActive : ''}`}
         >
-          {isFavorite ? '❤️' : '🤍'}
+          <i className={`fas ${isFavorite ? 'fa-heart' : 'fa-heart'}`}></i>
         </button>
       </div>
       
@@ -72,14 +72,14 @@ const ProductCard = ({ product, onToggleFavorite, isFavorite }) => {
               onClick={handleDecrease}
               className={styles.quantityBtn}
             >
-              -
+              <i className="fas fa-minus"></i>
             </button>
             <span className={styles.quantity}>{itemQuantity}</span>
             <button 
               onClick={handleIncrease}
               className={styles.quantityBtn}
             >
-              +
+              <i className="fas fa-plus"></i>
             </button>
           </div>
         ) : (
@@ -88,6 +88,7 @@ const ProductCard = ({ product, onToggleFavorite, isFavorite }) => {
             onClick={handleAddToCart}
             disabled={!product.inStock}
           >
+            <i className="fas fa-shopping-cart"></i>
             {product.inStock ? "Savatga qo'shish" : "Qolmagan"}
           </button>
         )}

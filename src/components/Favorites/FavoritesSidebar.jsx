@@ -19,13 +19,15 @@ const FavoritesSidebar = ({ isOpen, onClose, favorites, products, onRemoveFavori
       <div className={styles.favoritesSidebar}>
         <div className={styles.favoritesHeader}>
           <h2>Sevimlilar ({favoriteProducts.length})</h2>
-          <button className={styles.closeBtn} onClick={onClose}>✕</button>
+          <button className={styles.closeBtn} onClick={onClose}>
+            <i className="fas fa-times"></i>
+          </button>
         </div>
 
         <div className={styles.favoritesItems}>
           {favoriteProducts.length === 0 ? (
             <div className={styles.emptyFavorites}>
-              <div className={styles.emptyHeart}>🤍</div>
+              <i className="fas fa-heart"></i>
               <p>Sevimlilar ro'yxati bo'sh</p>
               <small>Mahsulotlarni yurakcha belgisi bilan saqlang</small>
             </div>
@@ -54,6 +56,7 @@ const FavoritesSidebar = ({ isOpen, onClose, favorites, products, onRemoveFavori
                     className={styles.addToCartBtn}
                     onClick={() => onAddToCart(product)}
                   >
+                    <i className="fas fa-shopping-cart"></i>
                     Savatga qo'shish
                   </button>
                 </div>
@@ -63,7 +66,7 @@ const FavoritesSidebar = ({ isOpen, onClose, favorites, products, onRemoveFavori
                   className={styles.removeBtn}
                   title="Sevimlilardan o'chirish"
                 >
-                  ❌
+                  <i className="fas fa-times"></i>
                 </button>
               </div>
             ))

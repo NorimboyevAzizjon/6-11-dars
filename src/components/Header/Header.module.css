@@ -19,14 +19,29 @@
   color: var(--uzum-gray);
 }
 
-.topInfo span {
+/* NavLink stillari top info uchun */
+.navLink {
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.2s;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
-.topInfo span:hover {
+.navLink:hover {
   color: var(--uzum-red);
+  background: rgba(229, 38, 30, 0.05);
+}
+
+.navLink.active {
+  color: var(--uzum-red);
+  font-weight: 600;
+  background: rgba(229, 38, 30, 0.1);
 }
 
 .langSelect {
@@ -35,6 +50,12 @@
   font-size: 12px;
   cursor: pointer;
   color: var(--uzum-gray);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.langSelect:hover {
+  background: rgba(229, 38, 30, 0.05);
 }
 
 .mainNav {
@@ -51,6 +72,14 @@
   color: var(--uzum-red);
   text-decoration: none;
   font-family: 'Arial', sans-serif;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.logo:hover {
+  background: rgba(229, 38, 30, 0.05);
+  transform: scale(1.05);
 }
 
 .catalogBtn {
@@ -65,11 +94,14 @@
   border: none;
   font-size: 14px;
   font-weight: 500;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .catalogBtn:hover {
   background: var(--uzum-dark-red);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(229, 38, 30, 0.3);
 }
 
 .searchBar {
@@ -88,6 +120,11 @@
   outline: none;
   font-size: 14px;
   border-right: none;
+  transition: border-color 0.3s ease;
+}
+
+.searchBar input:focus {
+  border-color: var(--uzum-dark-red);
 }
 
 .searchBar button {
@@ -99,6 +136,11 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.searchBar button:hover {
+  background: var(--uzum-dark-red);
 }
 
 .userActions {
@@ -109,6 +151,9 @@
 }
 
 .loginBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 10px 16px;
   border: 1px solid var(--uzum-border);
   border-radius: 8px;
@@ -117,27 +162,39 @@
   font-size: 14px;
   white-space: nowrap;
   color: var(--uzum-text);
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .loginBtn:hover {
   border-color: var(--uzum-red);
   color: var(--uzum-red);
+  background: rgba(229, 38, 30, 0.05);
+  transform: translateY(-1px);
 }
 
 .favoritesBtn {
-  padding: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
   border: 1px solid var(--uzum-border);
   border-radius: 8px;
   background: white;
   cursor: pointer;
-  font-size: 18px;
-  transition: all 0.2s;
+  font-size: 14px;
+  white-space: nowrap;
+  color: var(--uzum-text);
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .favoritesBtn:hover {
   border-color: var(--uzum-red);
   color: var(--uzum-red);
+  background: rgba(229, 38, 30, 0.05);
+  transform: translateY(-1px);
 }
 
 .cartBtn {
@@ -152,12 +209,15 @@
   font-size: 14px;
   white-space: nowrap;
   color: var(--uzum-text);
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .cartBtn:hover {
   border-color: var(--uzum-red);
   color: var(--uzum-red);
+  background: rgba(229, 38, 30, 0.05);
+  transform: translateY(-1px);
 }
 
 .categories {
@@ -169,32 +229,91 @@
   background: white;
 }
 
-.categories a {
+/* Category NavLink stillari */
+.categoryLink {
   white-space: nowrap;
   text-decoration: none;
   color: var(--uzum-text);
   font-size: 14px;
-  padding: 4px 0;
-  transition: color 0.2s;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.categoryLink:hover {
+  color: var(--uzum-red);
+  background: rgba(229, 38, 30, 0.05);
+  transform: translateY(-1px);
+}
+
+.categoryLink.active {
+  color: var(--uzum-red);
+  font-weight: 600;
+  background: rgba(229, 38, 30, 0.1);
+}
+
+.badge {
+  background: var(--uzum-red);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userName {
+  color: var(--uzum-text);
+  font-size: 14px;
   font-weight: 500;
 }
 
-.categories a:hover {
+.logoutBtn {
+  padding: 8px 12px;
+  border: 1px solid var(--uzum-border);
+  border-radius: 6px;
+  background: white;
   color: var(--uzum-red);
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.logoutBtn:hover {
+  background: var(--uzum-red);
+  color: white;
+  transform: translateY(-1px);
 }
 
 /* Scrollbar */
 .categories::-webkit-scrollbar {
-  height: 3px;
+  height: 4px;
 }
 
 .categories::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 2px;
 }
 
 .categories::-webkit-scrollbar-thumb {
   background: var(--uzum-red);
   border-radius: 2px;
+}
+
+.categories::-webkit-scrollbar-thumb:hover {
+  background: var(--uzum-dark-red);
 }
 
 /* Responsive */
@@ -218,35 +337,46 @@
     gap: 16px;
     padding: 10px 15px;
   }
+  
+  .navLink, .categoryLink {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  
+  .logo {
+    font-size: 20px;
+    padding: 6px 10px;
+  }
 }
 /* ... existing code ... */
 
-.userMenu {
+/* Shahar tanlash tugmasi */
+.cityBtn {
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.userName {
-  color: var(--uzum-text);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.logoutBtn {
-  padding: 8px 12px;
-  border: 1px solid var(--uzum-border);
-  border-radius: 6px;
-  background: white;
-  color: var(--uzum-red);
-  cursor: pointer;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: none;
+  background: none;
   font-size: 12px;
-  transition: all 0.2s;
+  font-family: inherit;
 }
 
-.logoutBtn:hover {
-  background: var(--uzum-red);
-  color: white;
+.cityBtn:hover {
+  color: var(--uzum-red);
+  background: rgba(229, 38, 30, 0.05);
+}
+
+.cityBtn.active {
+  color: var(--uzum-red);
+  font-weight: 600;
+  background: rgba(229, 38, 30, 0.1);
 }
 
 /* ... rest of existing code ... */

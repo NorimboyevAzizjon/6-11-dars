@@ -17,13 +17,11 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
     
     if (isOpen) {
       document.addEventListener('keydown', handleEsc);
-      // Modal ochilganda body ga scroll ni block qilamiz
       document.body.style.overflow = 'hidden';
     }
 
     return () => {
       document.removeEventListener('keydown', handleEsc);
-      // Modal yopilganda scroll ni qayta yoqamiz
       document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
@@ -35,7 +33,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
     }
   };
 
-  // Modal content bosilganda to'xtatamiz (propagation)
+  // Modal content bosilganda to'xtatamiz
   const handleModalClick = (e) => {
     e.stopPropagation();
   };
@@ -68,7 +66,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
     }
 
     setIsLoading(true);
-    // Simulyatsiya - 2 soniya kutamiz
     setTimeout(() => {
       setIsLoading(false);
       setIsCodeSent(true);
@@ -84,7 +81,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
     }
 
     setIsLoading(true);
-    // Simulyatsiya - kirish
     setTimeout(() => {
       setIsLoading(false);
       onLogin(phoneNumber);
@@ -93,7 +89,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
     }, 1500);
   };
 
-  // Orqaga qaytish (raqamni o'zgartirish)
+  // Orqaga qaytish
   const handleBack = () => {
     setIsCodeSent(false);
     setSmsCode('');
@@ -114,14 +110,19 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
       <div className={styles.modal} onClick={handleModalClick}>
         <div className={styles.modalHeader}>
           <h2>Kirish</h2>
-          <button className={styles.closeBtn} onClick={handleClose}>✕</button>
+          <button className={styles.closeBtn} onClick={handleClose}>
+            <i className="fas fa-times"></i>
+          </button>
         </div>
 
         <div className={styles.modalBody}>
           {!isCodeSent ? (
             <>
               <div className={styles.phoneSection}>
-                <label className={styles.label}>Telefon raqamingiz</label>
+                <label className={styles.label}>
+                  <i className="fas fa-mobile-alt"></i>
+                  Telefon raqamingiz
+                </label>
                 <div className={styles.phoneInputWrapper}>
                   <span className={styles.prefix}>+998</span>
                   <input
@@ -143,6 +144,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
                 disabled={isLoading || phoneNumber.replace(/\D/g, '').length !== 12}
                 className={styles.getCodeBtn}
               >
+                <i className="fas fa-sms"></i>
                 {isLoading ? 'Yuborilmoqda...' : 'Kodni olish'}
               </button>
             </>
@@ -151,7 +153,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               <div className={styles.codeSection}>
                 <div className={styles.codeHeader}>
                   <button onClick={handleBack} className={styles.backBtn}>
-                    ←
+                    <i className="fas fa-arrow-left"></i>
                   </button>
                   <span>SMS kod kiriting</span>
                 </div>
