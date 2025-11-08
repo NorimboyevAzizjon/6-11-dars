@@ -14,7 +14,7 @@
 
 .footerSection h3 {
   margin-bottom: 15px;
-  color: black; /* Purple */
+  color: black; 
   font-size: 18px;
   font-weight: 600;
 }
@@ -34,7 +34,7 @@
 
 .footerSection ul li:hover {
   opacity: 1;
-  color: #7A3CF9; /* Purple */
+  color: #7A3CF9; 
   transform: translateX(5px);
 }
 
@@ -89,7 +89,7 @@
 
 .footerLinks a:hover {
   opacity: 1;
-  color: #7A3CF9; /* Purple */
+  color: #7A3CF9; 
 }
 
 .copyright {
@@ -98,7 +98,6 @@
   margin-top: 10px;
 }
 
-/* Social icons */
 .socialIcons {
   display: flex;
   gap: 12px;
@@ -119,12 +118,11 @@
 }
 
 .socialIcon:hover {
-  background: #7A3CF9; /* Purple */
-  border-color: #7A3CF9; /* Purple */
+  background: #7A3CF9; 
+  border-color: #7A3CF9;
   transform: translateY(-2px);
 }
 
-/* Payment methods */
 .paymentMethods {
   margin-top: 20px;
   opacity: 0.8;
@@ -133,7 +131,7 @@
 .paymentMethods p {
   font-size: 12px;
   margin-bottom: 8px;
-  color: #7A3CF9; /* Purple */
+  color: #7A3CF9;
 }
 
 .paymentIcons {

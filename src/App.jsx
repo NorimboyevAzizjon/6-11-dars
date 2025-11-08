@@ -10,7 +10,6 @@ function App() {
   const [favorites, setFavorites] = useState(new Set());
   const [allProducts, setAllProducts] = useState([]);
 
-  // Sevimlilarga qo'shish/o'chirish
   const toggleFavorite = (productId) => {
     setFavorites(prev => {
       const newFavorites = new Set(prev);
@@ -23,7 +22,6 @@ function App() {
     });
   };
 
-  // Mahsulotlarni olish
   const handleProductsLoaded = (products) => {
     setAllProducts(products);
   };

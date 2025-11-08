@@ -17,32 +17,26 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
   const [activeLink, setActiveLink] = useState('/');
   const { addToCart } = useCart();
 
-  // Link bosilganda active holatini o'zgartirish
   const handleLinkClick = (path) => {
     setActiveLink(path);
   };
 
-  // Shahar tanlash
   const handleCitySelect = (city) => {
     setSelectedCity(city);
   };
 
-  // Sevimlilardan o'chirish
   const removeFavorite = (productId) => {
     onToggleFavorite(productId);
   };
 
-  // Mahsulotlarni savatga qo'shish
   const handleAddToCartFromFavorites = (product) => {
     addToCart(product);
   };
 
-  // Kirish funksiyasi
   const handleLogin = (phoneNumber) => {
     setIsLoggedIn(true);
   };
 
-  // Chiqish funksiyasi
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
@@ -50,7 +44,6 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
   return (
     <>
       <header className={styles.header}>
-        {/* Top info bar */}
         <div className={styles.topInfo}>
           <button 
             className={`${styles.navLink} ${styles.cityBtn} ${activeLink === '/location' ? styles.active : ''}`}
@@ -105,7 +98,6 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
           </select>
         </div>
 
-        {/* Main navigation */}
         <div className={styles.mainNav}>
           <a 
             href="#home" 
@@ -173,7 +165,7 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
           </div>
         </div>
 
-        {/* Categories */}
+       
         <nav className={styles.categories}>
           <a 
             href="#weekly" 
