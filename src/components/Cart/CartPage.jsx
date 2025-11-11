@@ -16,14 +16,11 @@ const CartPage = () => {
     console.log("Buyurtma berish");
   };
 
-  // Takrorlanmaydigan mahsulotlar ro'yxati
   const uniqueCartItems = cartItems.reduce((acc, item) => {
     const existingItem = acc.find(i => i.id === item.id);
     if (existingItem) {
-      // Agar mahsulot allaqachon ro'yxatda bo'lsa, faqat miqdorini yangilaymiz
       existingItem.quantity = item.quantity;
     } else {
-      // Yangi mahsulot qo'shamiz
       acc.push({ ...item });
     }
     return acc;

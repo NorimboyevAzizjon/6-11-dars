@@ -1,9 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
-// Context ni alohida export qilish
 export const CartContext = createContext();
 
-// Cart reducer
 const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_CART': {
@@ -81,11 +79,9 @@ const initialState = {
   items: []
 };
 
-// Provider component
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  // Cart ni localStorage dan yuklash
   useEffect(() => {
     const savedCart = localStorage.getItem('uzum_cart');
     if (savedCart) {
@@ -98,22 +94,17 @@ export const CartProvider = ({ children }) => {
     }
   }, []);
 
-  // Cart ni localStorage ga saqlash
   useEffect(() => {
     localStorage.setItem('uzum_cart', JSON.stringify(state.items));
   }, [state.items]);
 
-  // Mahsulotni savatga qo'shish
   const addToCart = (product) => {
     dispatch({ type: 'ADD_TO_CART', payload: product });
   };
-
-  // Mahsulotni savatdan o'chirish
   const removeFromCart = (productId) => {
     dispatch({ type: 'REMOVE_FROM_CART', payload: productId });
   };
 
-  // Mahsulot miqdorini yangilash
   const updateQuantity = (productId, quantity) => {
     if (quantity <= 0) {
       removeFromCart(productId);
@@ -122,38 +113,30 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Mahsulot miqdorini oshirish
   const incrementQuantity = (productId) => {
     dispatch({ type: 'INCREMENT_QUANTITY', payload: productId });
   };
 
-  // Mahsulot miqdorini kamaytirish
   const decrementQuantity = (productId) => {
     dispatch({ type: 'DECREMENT_QUANTITY', payload: productId });
   };
 
-  // Savatni tozalash
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
   };
 
-  // Jami narxni hisoblash
   const getCartTotal = () => {
     return state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
-  // Savatdagi mahsulotlar sonini hisoblash
   const getCartItemsCount = () => {
     return state.items.reduce((total, item) => total + item.quantity, 0);
   };
 
-  // Context qiymati
   const value = {
-    // State
     cart: state,
     items: state.items,
     
-    // Actions
     addToCart,
     removeFromCart,
     updateQuantity,
@@ -161,11 +144,9 @@ export const CartProvider = ({ children }) => {
     decrementQuantity,
     clearCart,
     
-    // Getters
     getCartTotal,
     getCartItemsCount,
     
-    // Utilities
     isEmpty: state.items.length === 0,
     itemCount: state.items.length
   };
@@ -177,7 +158,6 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// Custom hook
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
@@ -186,5 +166,4 @@ export const useCart = () => {
   return context;
 };
 
-// Faqat bitta default export
 export default CartContext;
