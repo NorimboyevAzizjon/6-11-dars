@@ -101,6 +101,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = (product) => {
     dispatch({ type: 'ADD_TO_CART', payload: product });
   };
+
   const removeFromCart = (productId) => {
     dispatch({ type: 'REMOVE_FROM_CART', payload: productId });
   };
@@ -136,17 +137,14 @@ export const CartProvider = ({ children }) => {
   const value = {
     cart: state,
     items: state.items,
-    
     addToCart,
     removeFromCart,
     updateQuantity,
     incrementQuantity,
     decrementQuantity,
     clearCart,
-    
     getCartTotal,
     getCartItemsCount,
-    
     isEmpty: state.items.length === 0,
     itemCount: state.items.length
   };

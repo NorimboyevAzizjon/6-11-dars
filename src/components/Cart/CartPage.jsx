@@ -1,11 +1,10 @@
 import React from "react";
-import { useCart } from "../../hooks/useCart";
+import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./CartPage.module.css";
 
 const CartPage = () => {
-  const { cartItems, removeFromCart, updateQuantity, clearCart, getCartTotal } =
-    useCart();
+  const { items, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
   const navigate = useNavigate();
 
   const handleContinueShopping = () => {
@@ -14,17 +13,16 @@ const CartPage = () => {
 
   const handleCheckout = () => {
     console.log("Buyurtma berish");
+    // Checkout logikasi
   };
 
-  const uniqueCartItems = cartItems.reduce((acc, item) => {
-    const existingItem = acc.find(i => i.id === item.id);
-    if (existingItem) {
-      existingItem.quantity = item.quantity;
+  const handleQuantityChange = (id, newQuantity) => {
+    if (newQuantity < 1) {
+      removeFromCart(id);
     } else {
-      acc.push({ ...item });
+      updateQuantity(id, newQuantity);
     }
-    return acc;
-  }, []);
+  };
 
   return (
     <div className={styles.cartPage}>
@@ -36,7 +34,7 @@ const CartPage = () => {
       </div>
 
       <div className={styles.cartContent}>
-        {uniqueCartItems.length === 0 ? (
+        {items.length === 0 ? (
           <div className={styles.emptyCart}>
             <i className="fas fa-shopping-cart"></i>
             <h2>Savat bo'sh</h2>
@@ -51,26 +49,32 @@ const CartPage = () => {
         ) : (
           <>
             <div className={styles.cartItems}>
-              {uniqueCartItems.map((item) => (
+              {items.map((item) => (
                 <div key={item.id} className={styles.cartItem}>
-                  <img src={item.image} alt={item.name} />
+                  <img 
+                    src={item.image || '/placeholder-product.jpg'} 
+                    alt={item.name} 
+                    className={styles.itemImage}
+                  />
                   <div className={styles.itemDetails}>
                     <h3>{item.name}</h3>
-                    <p className={styles.price}>${item.price}</p>
+                    <p className={styles.price}>{item.price?.toLocaleString()} so'm</p>
                     <p className={styles.totalPrice}>
-                      Jami: ${(item.price * item.quantity).toFixed(2)}
+                      Jami: {(item.price * item.quantity).toLocaleString()} so'm
                     </p>
                   </div>
                   <div className={styles.quantityControls}>
                     <button
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                       disabled={item.quantity <= 1}
+                      className={styles.quantityBtn}
                     >
                       -
                     </button>
-                    <span>{item.quantity}</span>
+                    <span className={styles.quantity}>{item.quantity}</span>
                     <button
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                      className={styles.quantityBtn}
                     >
                       +
                     </button>
@@ -88,15 +92,15 @@ const CartPage = () => {
             <div className={styles.cartSummary}>
               <div className={styles.summaryRow}>
                 <span>Mahsulotlar soni:</span>
-                <span>{uniqueCartItems.length} ta</span>
+                <span>{items.length} ta</span>
               </div>
               <div className={styles.summaryRow}>
                 <span>Jami miqdor:</span>
-                <span>{cartItems.reduce((total, item) => total + item.quantity, 0)} dona</span>
+                <span>{items.reduce((total, item) => total + item.quantity, 0)} dona</span>
               </div>
               <div className={styles.summaryRow}>
                 <span>Umumiy summa:</span>
-                <span>${getCartTotal()}</span>
+                <span className={styles.totalAmount}>{getCartTotal().toLocaleString()} so'm</span>
               </div>
               <button
                 className={styles.checkoutButton}
